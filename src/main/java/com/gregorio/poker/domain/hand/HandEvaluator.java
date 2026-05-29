@@ -1,7 +1,6 @@
-package com.gregorio.poker.domain.table;
+package com.gregorio.poker.domain.hand;
 
 import com.gregorio.poker.domain.card.Card;
-import com.gregorio.poker.domain.card.HandRank;
 import com.gregorio.poker.domain.card.Rank;
 
 import java.util.HashMap;

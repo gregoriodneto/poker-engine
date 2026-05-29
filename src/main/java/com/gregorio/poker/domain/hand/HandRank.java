@@ -1,4 +1,4 @@
-package com.gregorio.poker.domain.card;
+package com.gregorio.poker.domain.hand;
 
 public enum HandRank {
     HIGH_CARD,

@@ -1,4 +1,4 @@
-package com.gregorio.poker.domain.table;
+package com.gregorio.poker.domain.hand;
 
 import com.gregorio.poker.domain.player.Player;
 

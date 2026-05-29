@@ -2,6 +2,8 @@ package com.gregorio.poker.domain.table;
 
 import com.gregorio.poker.domain.deck.Deck;
 import com.gregorio.poker.domain.game.Modality;
+import com.gregorio.poker.domain.hand.EvaluatedHand;
+import com.gregorio.poker.domain.hand.HandEvaluator;
 import com.gregorio.poker.domain.player.Player;
 import com.gregorio.poker.exception.HandLimitExceededException;
 import com.gregorio.poker.exception.QuantityPlayersExceededTableException;
