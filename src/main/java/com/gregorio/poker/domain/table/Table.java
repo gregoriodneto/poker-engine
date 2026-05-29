@@ -1,5 +1,7 @@
 package com.gregorio.poker.domain.table;
 
+import com.gregorio.poker.domain.card.Card;
+import com.gregorio.poker.domain.card.Rank;
 import com.gregorio.poker.domain.deck.Deck;
 import com.gregorio.poker.domain.game.Modality;
 import com.gregorio.poker.domain.player.Player;
@@ -14,6 +16,7 @@ public class Table {
     private final List<Player> players;
     private final Modality modality;
     private final int maxPlayers;
+    private final HandEvaluator handEvaluator;
 
     public Table(Modality modality, int maxPlayers) throws QuantityPlayersExceededTableException {
         if (maxPlayers > 9) {
@@ -23,6 +26,7 @@ public class Table {
         this.players = new ArrayList<>();
         this.maxPlayers = maxPlayers;
         this.deck = new Deck();
+        this.handEvaluator = new HandEvaluator();
     }
 
     public void addPlayer(Player player) throws QuantityPlayersExceededTableException {
@@ -36,9 +40,13 @@ public class Table {
         deck.shuffle();
 
         for (Player player : players) {
+            List<Card> cards = new ArrayList<>();
             for (int i = 0; i < modality.getValue(); i++) {
-                player.receiveCard(deck.drawCard());
+                Card card = deck.drawCard();
+                player.receiveCard(card);
+                cards.add(card);
             }
+            System.out.println(handEvaluator.evaluate(cards));
         }
     }
 }

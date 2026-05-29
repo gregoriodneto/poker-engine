@@ -1,5 +1,6 @@
 package com.gregorio;
 
+import com.gregorio.poker.domain.card.Rank;
 import com.gregorio.poker.domain.game.Modality;
 import com.gregorio.poker.domain.deck.Deck;
 import com.gregorio.poker.domain.player.Player;
