@@ -19,7 +19,7 @@ public class Player {
         this.hand = new ArrayList<>();
     }
 
-    public void receiveCard(Card card) throws Exception {
+    public void receiveCard(Card card) throws HandLimitExceededException {
         if (this.hand.size() >= pokerModality.getValue()) {
             throw new HandLimitExceededException("Não pode ultrapassar o número máximo de cartas da modalidade selecionada.");
         }

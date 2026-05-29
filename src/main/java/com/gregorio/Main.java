@@ -7,19 +7,13 @@ import com.gregorio.poker.domain.table.Table;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        Deck deck = new Deck();
-
-        deck.shuffle();
-
         Player player = new Player("Greg", Modality.TEXAS);
 
-        Table table = new Table(deck, Modality.TEXAS, 9);
+        Table table = new Table(Modality.TEXAS, 9);
         table.addPlayer(player);
 
         table.startGame();
 
         System.out.println(player.showHand());
-
-        System.out.println(deck.remainingCards());
     }
 }
