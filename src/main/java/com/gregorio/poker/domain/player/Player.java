@@ -38,4 +38,13 @@ public class Player {
         }
         return info.toString();
     }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "name='" + name + '\'' +
+                ", pokerModality=" + pokerModality +
+                ", hand=" + hand +
+                '}';
+    }
 }

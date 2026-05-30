@@ -53,5 +53,9 @@ public class Table {
 
             evaluatedHands.add(evaluatedHand);
         }
+
+        for (EvaluatedHand evaluate : evaluatedHands) {
+            System.out.println(evaluate.toString());
+        }
     }
 }

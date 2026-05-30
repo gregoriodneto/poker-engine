@@ -19,4 +19,12 @@ public class EvaluatedHand {
     public HandResult getHandRanking() {
         return handRanking;
     }
+
+    @Override
+    public String toString() {
+        return "EvaluatedHand{" +
+                "player=" + player.toString() +
+                ", handRanking=" + handRanking.getHandRank() +
+                '}';
+    }
 }
