@@ -1,5 +1,6 @@
 package com.gregorio.poker.domain.table;
 
+import com.gregorio.poker.domain.card.Card;
 import com.gregorio.poker.domain.deck.Deck;
 import com.gregorio.poker.domain.game.Modality;
 import com.gregorio.poker.domain.hand.EvaluatedHand;
@@ -18,6 +19,7 @@ public class Table {
     private final int maxPlayers;
     private final HandEvaluator handEvaluator;
     private final List<EvaluatedHand> evaluatedHands;
+    private final List<Card> communityCards;
 
     public Table(Modality modality, int maxPlayers) throws QuantityPlayersExceededTableException {
         if (maxPlayers > 9) {
@@ -29,6 +31,7 @@ public class Table {
         this.deck = new Deck();
         this.handEvaluator = new HandEvaluator();
         this.evaluatedHands = new ArrayList<>();
+        this.communityCards = new ArrayList<>();
     }
 
     public void addPlayer(Player player) throws QuantityPlayersExceededTableException {
@@ -41,14 +44,22 @@ public class Table {
     public void startGame() throws HandLimitExceededException {
         deck.shuffle();
 
+        dealCommunityCards();
+
         for (Player player : players) {
             for (int i = 0; i < modality.getValue(); i++) {
                 player.receiveCard(deck.drawCard());
             }
 
+            List<Card> allCards = new ArrayList<>();
+
+            allCards.addAll(player.getHand());
+            allCards.addAll(communityCards);
+
             EvaluatedHand evaluatedHand = new EvaluatedHand(
                     player,
-                    handEvaluator.evaluate(player.getHand())
+                    handEvaluator.evaluate(allCards),
+                    allCards
             );
 
             evaluatedHands.add(evaluatedHand);
@@ -56,6 +67,12 @@ public class Table {
 
         for (EvaluatedHand evaluate : evaluatedHands) {
             System.out.println(evaluate.toString());
+        }
+    }
+
+    private void dealCommunityCards() {
+        for (int i = 0; i < 5; i++) {
+            communityCards.add(deck.drawCard());
         }
     }
 }
